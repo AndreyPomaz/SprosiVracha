@@ -1,8 +1,16 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+        type: choice
+        options:
+          - first_test
+          - second_test
 
 jobs:
   run-test:
@@ -31,8 +39,9 @@ jobs:
           APP_OPTIONS: host=localhost;port=8080;admin.username=${{ secrets.ADMIN_USERNAME }};admin.password=${{ secrets.ADMIN_PASSWORD }}
           CI_RUN: true
 
-      - name: Attach screenshots
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          path: screenshots
+      - name: first_test
+        if: "github.event.inputs.deployment_target == 'first_test'"
+        run: mvn test
+      - name: second_test
+        if: "github.event.inputs.deployment_target == 'second_test'"
+        run: mvn test
