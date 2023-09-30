@@ -9,8 +9,7 @@ on:
         default:
         type: choice
         options:
-          - first_test
-          - second_test
+          - Start test
 
 jobs:
   run-test:
