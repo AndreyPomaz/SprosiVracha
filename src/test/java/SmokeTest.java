@@ -19,7 +19,7 @@ public class SmokeTest extends BaseTest{
     }
 
     @Test
-    public void testbutton() throws InterruptedException {
+    public void testbutton(){
         getDriver().get(BASE_URL);
 
         WebElement button = getDriver().findElement(By.linkText("Задайте вопрос врачу"));
