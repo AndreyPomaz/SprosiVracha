@@ -14,7 +14,10 @@ public class SmokeTest {
     @Test
     public void testSmoke() {
 
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--remote-allow-origins=*", "--headless", "--window-size=1920,1080");
+
+        WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://sprosivracha.com/");
 
         String title = driver.getTitle();
